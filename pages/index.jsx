@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
-
+import "dotenv/config";
 export default function Home() {
   const [searchWord, setSearchWord] = useState();
   const [category, setCategory] = useState();
@@ -34,7 +34,7 @@ export default function Home() {
 
   const getCategory = async () => {
     setReRender(true);
-    const res = await fetch("/api/category");
+    const res = await fetch(`${BASE_URL}/api/category`);
     const result = await res.json();
     setCategory(result.category);
     setReRender(false);
@@ -46,7 +46,7 @@ export default function Home() {
       return document.getElementById("searchWord").focus();
     }
     setReRender(true);
-    const res = await fetch("/api/crawler", {
+    const res = await fetch(`${BASE_URL}/api/crawler`, {
       method: "POST",
       body: JSON.stringify({
         word: searchWord,
