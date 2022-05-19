@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
-import dotenv from "dotenv";
-dotenv.config();
-
+require("dotenv").config;
 const nextConfig = {
   reactStrictMode: true,
   assetPrefix: process.env.NODE_ENV === "production" ? "https://crawling-test.vercel.app/" : "",
