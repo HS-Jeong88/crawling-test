@@ -7,8 +7,8 @@ export default function Home() {
   const [currentCategory, setCurrentCategory] = useState();
   const [data, setData] = useState();
   const [reRender, setReRender] = useState(false);
-  console.log(process.env.BASE_URL);
   useEffect(() => {
+    console.log(process.env.BASE_URL);
     const searchWord = document.getElementById("searchWord");
     searchWord.focus();
     getCategory();
