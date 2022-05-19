@@ -1,2 +1,2 @@
 export const prefix =
-  process.env.NODE_ENV === "production" ? "https://hs-jeong88.github.io/crawling-test/" : "";
+  process.env.NODE_ENV === "production" ? "https://crawling-test.vercel.app/" : "";
