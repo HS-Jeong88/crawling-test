@@ -29,5 +29,10 @@
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
   },
-  "homepage": "https://crawling-test.vercel.app/"
+  "homepage": "https://crawling-test.vercel.app/",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
 }

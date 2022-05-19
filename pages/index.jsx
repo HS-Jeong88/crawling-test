@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
-import "dotenv/config";
+
 export default function Home() {
   const [searchWord, setSearchWord] = useState();
   const [category, setCategory] = useState();
