@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <Layout title="Home">
       {reRender ? (
-        <div className="fixed left-0 top-0 h-screen w-screen flex justify-center items-center bg-gray-700 bg-opacity-50">
+        <div className="fixed left-0 top-0 h-screen w-screen flex justify-center items-center bg-gray-700 bg-opacity-50 z-10">
           <span className="text-3xl select-none">Loading...</span>
         </div>
       ) : null}
