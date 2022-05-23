@@ -137,9 +137,9 @@ export default function Home(props) {
   );
 }
 export const getStaticProps = async () => {
-  // const res = await fetch(`http://localhost:3000/api/category`);
-  const res = await fetch(`${process.env.BASE_URL}/api/category`);
-  const result = await res.json();
+  // const res = await axios.get(`http://localhost:3000/api/category`);
+  const res = await axios.get(`${process.env.BASE_URL}/api/category`);
+  const result = await res.data;
   return {
     props: { result },
   };
