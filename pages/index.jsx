@@ -1,7 +1,9 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
 
-export default function Home() {
+export default function Home(props) {
+  const { result } = props;
   const [searchWord, setSearchWord] = useState();
   const [category, setCategory] = useState();
   const [currentCategory, setCurrentCategory] = useState();
@@ -33,11 +35,11 @@ export default function Home() {
   };
 
   const getCategory = async () => {
-    setReRender(true);
-    const res = await fetch(`${process.env.BASE_URL}/api/category`);
-    const result = await res.json();
+    // setReRender(true);
+    // const res = await fetch(`${process.env.BASE_URL}/api/category`);
+    // const result = await res.json();
     setCategory(result.category);
-    setReRender(false);
+    // setReRender(false);
   };
 
   const getChartData = async () => {
@@ -66,7 +68,7 @@ export default function Home() {
           <span className="text-3xl select-none">Loading...</span>
         </div>
       ) : null}
-      <div className="h-[80vh] overflow-scroll">
+      <div className="h-[calc(100vh_-_15rem)] overflow-scroll">
         <div className="flex justify-center items-center space-x-2 w-full">
           <span className="w-16 px-1 flex justify-center items-center select-none">카테고리</span>
           <select
@@ -134,3 +136,11 @@ export default function Home() {
     </Layout>
   );
 }
+export const getStaticProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/category`);
+  // const res = await fetch(`${process.env.BASE_URL}/api/category`);
+  const result = await res.json();
+  return {
+    props: { result },
+  };
+};
