@@ -13,7 +13,8 @@ export default function Home(props) {
     console.log(process.env.BASE_URL);
     const searchWord = document.getElementById("searchWord");
     searchWord.focus();
-    getCategory();
+    setCategory(result.category);
+    // getCategory();
   }, []);
   useEffect(() => {}, [category]);
   useEffect(() => {}, [data]);
@@ -34,13 +35,13 @@ export default function Home(props) {
     searchWord.focus();
   };
 
-  const getCategory = async () => {
-    // setReRender(true);
-    // const res = await fetch(`${process.env.BASE_URL}/api/category`);
-    // const result = await res.json();
-    setCategory(result.category);
-    // setReRender(false);
-  };
+  // const getCategory = async () => {
+  // setReRender(true);
+  // const res = await fetch(`${process.env.BASE_URL}/api/category`);
+  // const result = await res.json();
+  // setCategory(result.category);
+  // setReRender(false);
+  // };
 
   const getChartData = async () => {
     if (searchWord.length <= 1) {
@@ -48,19 +49,16 @@ export default function Home(props) {
       return document.getElementById("searchWord").focus();
     }
     setReRender(true);
-    const res = await fetch(`${process.env.BASE_URL}/api/crawler`, {
+    const res = await axios({
       method: "POST",
-      body: JSON.stringify({
-        word: searchWord,
-        cate: currentCategory ? currentCategory : "패션의류",
-      }),
+      // url:`http://localhost:3000/api/crawler`,
+      url: `${process.env.BASE_URL}/api/crawler`,
+      data: { word: searchWord, cate: currentCategory ? currentCategory : "패션의류" },
       headers: { "Content-type": "application/json" },
     });
-    const result = await res.json();
-    setData(result.chart);
+    setData(res.data.chart);
     setReRender(false);
   };
-
   return (
     <Layout title="Home">
       {reRender ? (
@@ -122,15 +120,16 @@ export default function Home(props) {
                   ✕
                 </button>
               </ul>
-              <div className="flex justify-center items-center mt-10">
-                {data === "not found" ? (
-                  <span id="notFound" className="text-lg">
-                    검색 결과가 존재하지 않습니다
-                  </span>
-                ) : null}
-              </div>
             </>
-          ) : null}
+          ) : (
+            <div className="flex justify-center items-center mt-10">
+              {data === "not found" ? (
+                <span id="notFound" className="text-lg">
+                  검색 결과가 존재하지 않습니다
+                </span>
+              ) : null}
+            </div>
+          )}
         </div>
       </div>
     </Layout>

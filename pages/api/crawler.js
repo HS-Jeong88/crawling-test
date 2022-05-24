@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 
 export default async function main(req, res) {
   if (req.method === "POST") {
-    const { word, cate } = req.body;
+    const { word, cate } = req.body.data;
     let data = [];
 
     let browser = await puppeteer.launch({ headless: true });

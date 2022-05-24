@@ -1,4 +1,3 @@
-import { SWRConfig } from "swr";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { PortfolioProvider } from "../context/context";
@@ -9,7 +8,7 @@ export const Layout = (props) => {
 
   return (
     <PortfolioProvider value={{ prefix }}>
-      <main className="flex flex-col h-full">
+      <main className="flex flex-col h-full font-sans">
         <Header />
         <div className="mt-24 mb-2 mx-2">
           <div className="flex justify-center items-center">{title}</div>
